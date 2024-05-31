@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip Game</title>
+  </head>
+  <style>
+    h2 {
+      text-align: center;
+      padding: 20px;
+      border: 2px solid black;
+      border-radius: 40px;
+      width: 50%;
+      margin-left: 23%;
+      margin-top: 35px;
+    }
+    .container {
+      margin: auto;
+      padding: 25px;
+      border: 2px solid black;
+      width: 500px;
+      margin-top: 5%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    img {
+      margin: 10px;
+      margin: 1px solid black;
+      padding: 10px;
+    }
+    button {
+      margin-left: 43%;
+      background-color: aquamarine;
+      padding: 10px;
+      font-weight: 600;
+
+      border-radius: 10px;
+    }
+    .flip-box {
+      position: relative;
+      text-align: center;
+      transition: transform 1.8s;
+      transform-style: preserve-3d;
+      opacity: 1;
+      perspective: 1000%;
+    }
+  </style>
+
+  <body>
+    <h2 id="counting">Your result: 0</h2>
+    <br />
+    <div class="container">
+      <div class="image">
+        <img
+          src="./photo-1530533718754-001d2668365a.avif"
+          alt=""
+          id="img1"
+          height="200px"
+          width="200px"
+        />
+      </div>
+
+      <div>
+        <img
+          src="./photo-1530533718754-001d2668365a.avif"
+          alt=""
+          id="img2"
+          height="200px"
+          width="200px"
+        />
+      </div>
+      <div>
+        <img
+          src="./photo-1530533718754-001d2668365a.avif"
+          alt=""
+          id="img3"
+          height="200px"
+          width="200px"
+        />
+      </div>
+      <div>
+        <img
+          src="./photo-1530533718754-001d2668365a.avif"
+          alt=""
+          id="img4"
+          height="200px"
+          width="200px"
+        />
+      </div>
+      <button id="btn">Submit</button>
+      <h1 id="result"></h1>
+    </div>
+    <script>
+      const counting = document.getElementById("counting");
+      const button = document.getElementById("btn");
+      const image1 = document.getElementById("img1");
+      const image2 = document.getElementById("img2");
+      const image3 = document.getElementById("img3");
+      const image4 = document.getElementById("img4");
+      const Feedback = document.getElementById("result");
+
+      let num1 = Math.floor(Math.random() * 4 + 1);
+      let num2 = Math.floor(Math.random() * 4 + 1);
+      let num3 = Math.floor(Math.random() * 4 + 1);
+      let num4 = Math.floor(Math.random() * 4 + 1);
+      let result = 0;
+      let count = 0;
+      let checkSrc = "";
+
+      var image1Click = 0;
+      var image2Click = 0;
+      var image3Click = 0;
+      var image4Click = 0;
+
+      image1.addEventListener("click", function (event) {
+        image1Click++;
+        console.log(image1Click);
+        count++;
+
+        if (count < 3) {
+          image1.classList.add("flip-box");
+          let deg = image1Click * 180;
+          image1.style.transform = `rotateY(${deg}deg)`;
+
+          setTimeout(() => {
+            image1.src = `${num1}.jpg`;
+            if (count == 2) {
+              if (checkSrc == event.target.src) {
+                Feedback.innerText = "  Nice!!! You Selected Correct Images";
+                result++;
+                counting.innerText = `Your result: ${result}`;
+              } else {
+                Feedback.innerText = "Oops !!! Try again ";
+              }
+            }
+            checkSrc = event.target.src;
+
+            console.log(checkSrc);
+          }, 600);
+        }
+      });
+      image2.addEventListener("click", function (event) {
+        image2Click++;
+        count++;
+        console.log(count);
+        let deg = image2Click * 180;
+        image2.style.transform = `rotateY(${deg}deg)`;
+        if (count < 3) {
+          image2.classList.add("flip-box");
+          setTimeout(() => {
+            image2.src = `${num2}.jpg`;
+
+            if (count == 2) {
+              if (checkSrc == event.target.src) {
+                Feedback.innerText = "  Nice!!! You Selected Correct Images";
+                result++;
+                counting.innerText = `Your result: ${result}`;
+              } else {
+                Feedback.innerText = "Oops !!! Try again ";
+              }
+            }
+            checkSrc = event.target.src;
+            console.log(checkSrc);
+          }, 600);
+        }
+      });
+      image3.addEventListener("click", function (event) {
+        image3Click++;
+        count++;
+        console.log(count);
+        if (count < 3) {
+          image3.classList.add("flip-box");
+          let deg = image3Click * 180;
+          image3.style.transform = `rotateY(${deg}deg)`;
+          setTimeout(() => {
+            image3.src = `${num3}.jpg`;
+            if (count == 2) {
+              if (checkSrc == event.target.src) {
+                Feedback.innerText = "  Nice!!! You Selected Correct Images";
+                result++;
+                counting.innerText = `Your result: ${result}`;
+              } else {
+                Feedback.innerText = "Oops !!! Try again ";
+              }
+            }
+            checkSrc = event.target.src;
+            console.log(checkSrc);
+          }, 600);
+        }
+      });
+      image4.addEventListener("click", function (event) {
+        image4Click++;
+        count++;
+        console.log(count);
+
+        if (count < 3) {
+          image4.classList.add("flip-box");
+          let deg = image4Click * 180;
+          image4.style.transform = `rotateY(${deg}deg)`;
+          setTimeout(() => {
+            image4.src = `${num4}.jpg`;
+            if (count == 2) {
+              if (checkSrc == event.target.src) {
+                Feedback.innerText = "  Nice!!! You Selected Correct Images";
+                result++;
+                counting.innerText = `Your result: ${result}`;
+              } else {
+                Feedback.innerText = "Oops !!! Try again ";
+              }
+            }
+            checkSrc = event.target.src;
+            console.log(checkSrc);
+          }, 600);
+        }
+      });
+
+      const arr = [];
+      button.addEventListener("click", function () {
+        count = 0;
+        arr.push(num1);
+        arr.push(num2);
+        arr.push(num3);
+        arr.push(num4);
+        console.log(arr);
+        const check = [...new Set(arr)];
+        console.log(check);
+
+        image1.src = `${num1}.jpg`;
+        image2.src = `${num2}.jpg`;
+        image3.src = `${num3}.jpg`;
+        image4.src = `${num4}.jpg`;
+
+        setTimeout(() => {
+          image1.src = `./photo-1530533718754-001d2668365a.avif`;
+          image2.src = `./photo-1530533718754-001d2668365a.avif`;
+          image3.src = `./photo-1530533718754-001d2668365a.avif`;
+          image4.src = `./photo-1530533718754-001d2668365a.avif`;
+        }, 2000);
+
+        num1 = Math.floor(Math.random() * 4 + 1);
+        num2 = Math.floor(Math.random() * 4 + 1);
+        num3 = Math.floor(Math.random() * 4 + 1);
+        num4 = Math.floor(Math.random() * 4 + 1);
+
+        arr.length = 0;
+        Feedback.innerText = " ";
+      });
+    </script>
+  </body>
+</html>
