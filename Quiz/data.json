@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Which of the following is NOT a valid primitive data type in Java?",
+    "A": "int",
+    "B": "float",
+    "C": "string",
+    "D": "boolean",
+    "answer": "C"
+  },
+  {
+    "question": "What does the 'this' keyword refer to in Java?",
+    "A": "The current class instance",
+    "B": "The superclass instance",
+    "C": "The parent class instance",
+    "D": "The child class instance",
+    "answer": "A"
+  },
+  {
+    "question": "What is the purpose of the 'final' keyword in Java?",
+    "A": "To indicate that a method cannot be overridden",
+    "B": "To specify that a variable cannot be changed",
+    "C": "To prevent a class from being extended",
+    "D": "All of the above",
+    "answer": "D"
+  },
+  {
+    "question": "Which statement is used to exit from a loop in Java?",
+    "A": "halt",
+    "B": "break",
+    "C": "exit",
+    "D": "stop",
+    "answer": "B"
+  },
+  {
+    "question": "Which collection class allows duplicate elements in Java?",
+    "A": "HashSet",
+    "B": "TreeSet",
+    "C": "ArrayList",
+    "D": "HashMap",
+    "answer": "C"
+  }
+]

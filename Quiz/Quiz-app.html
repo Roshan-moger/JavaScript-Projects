@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz-App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <body>
+      <h1 style="text-align: center">Task-1</h1>
+
+      <p> <b>Note:</b>Please answer all questions and do not proceed without an answer.</p>
+      <div class="container">
+        <h3 id="Question"></h3>
+        <button class="btn btn-left" id="left">Prev</button>
+        <a href="" class="option"><button id="A"></button></a>
+        <a href="" class="option"><button id="B"></button></a>
+        <a href="" class="option"><button id="C"></button></a>
+        <a href="" class="option"><button id="D"></button></a>
+        <button class="btn btn-right" id="right">next</button>
+
+        <button id="submit">Submit</button>
+      </div>
+    </body>
+    <script>
+
+      $(document).ready(function () {
+        let result = "";
+        let resultCount = 0;
+        $(".option button").click(function (event) {
+          event.preventDefault();
+          result = event.target.id;
+          $.ajax({
+            url: "./data.json",
+            success: function (jd) {
+              console.log(jd[count].answer);
+              if (result === jd[count].answer) {
+                resultCount++;
+                $(`#${result}`).css(
+                  "background-color",
+                  "rgba(74, 236, 74, 0.767)"
+                );
+              } else {
+                $(`#${result}`).css(
+                  "background-color",
+                  "rgba(236, 4, 4, 0.767)"
+                );
+                $(`#${jd[count].answer}`).css(
+                  "background-color",
+                  "rgba(74, 236, 74, 0.767)"
+                );
+              }
+            },
+          });
+          $(".option button").attr("disabled", true);
+        });
+
+        let count = 0;
+        if (count == 0) {
+          $("#left").css("visibility", "hidden");
+          $("#submit").css("visibility", "hidden");
+        }
+
+        $.ajax({
+          url: "./data.json",
+          success: function (jd) {
+            console.log(jd);
+            $("#Question")
+              .text(jd[count].question)
+              .prepend(count + 1 + ". ");
+            $("#A").text(jd[count].A);
+            $("#B").text(jd[count].B);
+            $("#C").text(jd[count].C);
+            $("#D").text(jd[count].D);
+          },
+        });
+
+        $("#left").click(function () {
+            $(".option button").attr("disabled", true);
+
+          if (count <= 0) {
+            $("#left").css("visibility", "hidden");
+            $("#submit").css("visibility", "hidden");
+          }
+          count--;
+          $.ajax({
+            url: "./data.json",
+            success: function (jd) {
+              console.log((jd));
+              console.log(count);
+              if (count < 0) {
+                count = 0;
+              }
+              $("#Question")
+                .text(jd[count].question)
+                .prepend(count + 1 + ". ");
+              $("#A").text(jd[count].A);
+              $("#B").text(jd[count].B);
+              $("#C").text(jd[count].C);
+              $("#D").text(jd[count].D);
+            },
+          });
+        });
+        $("#right").click(function () {
+          count++;
+          $(".option button").attr("disabled", false);
+          $(`.option button`).css("background-color", "white");
+
+          $.ajax({
+            url: "./data.json",
+            success: function (jd) {
+              console.log(jd);
+
+              $("#Question")
+                .text(jd[count].question)
+                .prepend(count + 1 + ". ");
+              $("#A").text(jd[count].A);
+              $("#B").text(jd[count].B);
+              $("#C").text(jd[count].C);
+              $("#D").text(jd[count].D);
+
+              if (count > 0) {
+                $("#left").css("visibility", "visible");
+
+              }
+              if (count == 4) {
+                $("#right").css("visibility", "hidden");
+                $("#submit").css("visibility", "visible");
+              }
+            },
+          });
+        });
+
+        $("#submit").click(function () {
+          $("#Question").html(`You got ${resultCount} out of 5`);
+          $(".option").css("visibility", "hidden");
+          $("#left").css("visibility", "hidden");
+          $("#submit").css("visibility", "hidden");
+        });
+      });
+    </script>
+  </body>
+</html>

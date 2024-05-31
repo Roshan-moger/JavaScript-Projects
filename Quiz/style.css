@@ -1,0 +1,70 @@
+* {
+  margin: auto;
+}
+
+
+
+.container {
+  margin-top: 100px;
+  width: 500px;
+  height: 450px;
+  border: 5px solid rgba(16, 17, 17, 0.767);
+  border-radius: 15px;
+  background-color: white;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+h3,
+h1,p {
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 95%;
+  padding: 10px;
+}
+a{
+    text-decoration: none;
+
+}
+a button{
+    display: block;
+    align-self: center;
+    margin-left: auto;
+    padding: 10px;
+    width: 60%;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(200%);
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid rgb(65, 61, 61);
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgb(169, 223, 61);
+}
+
+.btn-left {
+  left: 400px;
+}
+
+.btn-right {
+  right: 400px;
+}
+#submit{
+    text-decoration: none;
+  font-size: 20px;
+  border-radius: 10px;
+  padding: 5px;
+  border: 1px solid black;
+  background-color: rgb(169, 223, 61);
+  align-self: center;
+  margin-top: 25px;
+  margin-left: 43%;
+
+}
