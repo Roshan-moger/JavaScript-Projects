@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Activity</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <style>
+    .text {
+      height: 100px;
+      width: 100px;
+      border: 1px solid black;
+      margin: 10px;
+      background-image: url("./red-texture-high-quality-free-photo.jpg");
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    h2 {
+      text-align: center;
+      padding: 20px;
+      border: 2px solid black;
+      border-radius: 40px;
+      width: 50%;
+      margin-left: 23%;
+      margin-top: 35px;
+    }
+    .container {
+      margin: auto;
+      padding: 25px;
+      border: 2px solid black;
+      width: 600px;
+      margin-top: 15%;
+    }
+    .container1 {
+      display: flex;
+      justify-content: space-around;
+    }
+    .container2 {
+      display: flex;
+      justify-content: space-around;
+    }
+
+   .img{
+    height: 100px;
+    width: 100px;
+   }
+
+    .flip-box {
+      position: relative;
+      text-align: center;
+      transition: transform 1.9s;
+      transform-style: preserve-3d;
+      opacity: 1;
+      perspective: 1000%;
+    }
+  </style>
+
+  <body>
+    <h2>Welcome to Memory Activity 😁😊✌</h2>
+    <br />
+
+    <div class="container">
+      <div class="container1">
+        <div class="text" id="name1"><h3 id="1"></h3></div>
+        <div class="text" id="name2"><h3 id="2"></h3></div>
+        <div class="text" id="name3"><h3 id="3"></h3></div>
+        <div class="text" id="name4"><h3 id="4"></h3></div>
+      </div>
+
+      <br />
+      <div class="container2">
+        <div class="img">
+          <img
+            src="./photo-1530533718754-001d2668365a.avif"
+            alt=""
+            id="img1"
+            height="100%"
+            width="100%"
+          />
+        </div>
+
+        <div class="img">
+          <img
+            src="./photo-1530533718754-001d2668365a.avif"
+            alt=""
+            id="img2"
+            height="100%"
+            width="100%"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="./photo-1530533718754-001d2668365a.avif"
+            alt=""
+            id="img3"
+            height="100%"
+            width="100%"
+          />
+        </div>
+        <div class="img">
+          <img
+            src="./photo-1530533718754-001d2668365a.avif"
+            alt=""
+            id="img4"
+            height="100%"
+            width="100%"
+          />
+        </div>
+      </div>
+    </div>
+
+    <h1 id="timer" style="text-align: center">0 : 60</h1>
+
+    <h1 id="Feedback" style="text-align: center"></h1>
+    <script>
+      const counting = document.getElementById("counting");
+      const button = document.getElementById("btn");
+      const image1 = document.getElementById("img1");
+      const image2 = document.getElementById("img2");
+      const image3 = document.getElementById("img3");
+      const image4 = document.getElementById("img4");
+      const Feedback = document.getElementById("result");
+      const Texts = document.getElementsByClassName("text");
+      let count = 0;
+      let textCount = 0;
+      let text = "";
+      let check = "";
+      var resultCount = 0;
+      var result = 0;
+      let timer = 60;
+      let Timing = setInterval(() => {
+        --timer;
+        $("#timer").text(`00:${timer}`);
+
+        if (timer < 0) {
+          $("#timer").text(`Times Up`);
+          $("#Feedback").text("Better Luck Next Time!!!😢😢🤧 ");
+          textCount = 5;
+
+          clearInterval(Timing);
+
+          setTimeout(()=>{
+            $("body").html("<h1> Pls Restart the game</h1>")
+          },4000)
+        }
+      }, 1000);
+
+      const animalName = ["Elephant", "Lion", "Cheetah", "Tiger"];
+      let shuffle = () => {
+        for (let i = animalName.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [animalName[i], animalName[j]] = [animalName[j], animalName[i]];
+        }
+        return animalName;
+      };
+      console.log(shuffle());
+      const newName = [...animalName];
+      $("#name1").click(function (event) {
+        textCount++;
+        count = 0;
+        if (textCount == 1) {
+          $("#name1")
+            .addClass("flip-box")
+            .css({ transform: "rotateY(180deg)" });
+          setTimeout(() => {
+            
+            $("#1").text(`${newName[0]}`).css({ transform: "rotateY(180deg)" });
+            console.log(event.target.innerText);
+            check = `${event.target.innerText}.jpg`;
+            console.log(check);
+            $("#name1").addClass("fade");
+          }, 800);
+        }
+      });
+      $("#name2").click(function (event) {
+        textCount++;
+        count = 0;
+        if (textCount == 1) {
+          $("#name2")
+            .addClass("flip-box")
+            .css({ transform: "rotateY(180deg)" });
+          setTimeout(() => {
+            
+            $("#2").text(`${newName[1]}`).css({ transform: "rotateY(180deg)" });
+            console.log(event.target.innerText);
+            check = `${event.target.innerText}.jpg`;
+            $("#name2").addClass("fade");
+          }, 800);
+        }
+      });
+      $("#name3").click(function (event) {
+        textCount++;
+        count = 0;
+        if (textCount == 1) {
+          $("#name3")
+            .addClass("flip-box")
+            .css({ transform: "rotateY(180deg)" });
+          setTimeout(() => {
+           
+            $("#3").text(`${newName[2]}`).css({ transform: "rotateY(180deg)" });
+            console.log(event.target.innerText);
+            check = `${event.target.innerText}.jpg`;
+            $("#name3").addClass("fade");
+          }, 800);
+        }
+      });
+      $("#name4").click(function (event) {
+        textCount++;
+        count = 0;
+        if (textCount == 1) {
+          $("#name4")
+            .addClass("flip-box")
+            .css({ transform: "rotateY(180deg)" });
+          setTimeout(() => {
+            
+            $("#4").text(`${newName[3]}`).css({ transform: "rotateY(180deg)" });
+            console.log(event.target.innerText);
+            check = `${event.target.innerText}.jpg`;
+            $("#name4").addClass("fade");
+          }, 800);
+        }
+      });
+
+      let shuffle1 = () => {
+        for (let i = animalName.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [animalName[i], animalName[j]] = [animalName[j], animalName[i]];
+        }
+        return animalName;
+      };
+      console.log(shuffle1());
+
+      image1.addEventListener("click", function (event) {
+        count++;
+        console.log(count);
+        if (count == 1 && textCount >= 1) {
+          image1.classList.add("flip-box");
+          image1.style.transform = `rotateY(${count * 180}deg)`;
+          setTimeout(() => {
+            image1.src = `${animalName[0]}.jpg`;
+            let animal = event.target.src;
+            text = animal.substr(22);
+
+            if (check == text) {
+              result = ++resultCount;
+              console.log(result);
+
+              $(`#img1`).fadeOut(2000);
+              $(".fade").fadeOut(2000);
+              count = 0;
+              textCount = 0;
+              if (result == 4) {
+                clearInterval(Timing);
+                const resultTime = eval(`60 - ${timer}`);
+
+                $("#Feedback")
+                  .text("Congratulation You Completed in ")
+                  .append(`${resultTime} Seconds..🙌🕺`);
+              }
+            } else {
+              count = 0;
+              textCount = 0;
+
+              setTimeout(() => {
+                image1.style.transform = `rotateY(${360}deg)`;
+                $(".fade").css({ transform: `rotateY(${360}deg)` });
+                image1.src = "./photo-1530533718754-001d2668365a.avif";
+                $("#1").css({ transform: "rotateY(360deg)" });
+
+                $(".fade h3").text(" ");
+                $("#name4").removeClass("fade");
+                $("#name3").removeClass("fade");
+                $("#name2").removeClass("fade");
+                $("#name1").removeClass("fade");
+              }, 1800);
+            }
+          }, 800);
+        }
+      });
+
+      image2.addEventListener("click", function (event) {
+        count++;
+        console.log(count);
+        if (count == 1 && textCount >= 1) {
+          image2.classList.add("flip-box");
+          image2.style.transform = `rotateY(${count * 180}deg)`;
+          setTimeout(() => {
+            image2.src = `${animalName[1]}.jpg`;
+            let animal = event.target.src;
+            text = animal.substr(22);
+            if (check == text) {
+              result = ++resultCount;
+              console.log(result);
+              $(`#img2`).fadeOut(2000);
+              $(".fade").fadeOut(2000);
+              count = 0;
+              textCount = 0;
+              if (result == 4) {
+                clearInterval(Timing);
+                const resultTime = eval(`60 - ${timer}`);
+                $("#Feedback")
+                  .text("Congratulation You Completed in ")
+                  .append(`${resultTime} Seconds..🙌🕺`);
+              }
+            } else {
+              count = 0;
+              textCount = 0;
+
+              setTimeout(() => {
+                image2.style.transform = `rotateY(${360}deg)`;
+                $("#2").css({ transform: "rotateY(360deg)" });
+                $(".fade").css({ transform: `rotateY(${360}deg)` });
+
+                image2.src = "./photo-1530533718754-001d2668365a.avif";
+                $(".fade h3").text(" ");
+                $("#name4").removeClass("fade");
+                $("#name3").removeClass("fade");
+                $("#name2").removeClass("fade");
+                $("#name1").removeClass("fade");
+              }, 1800);
+            }
+          }, 800);
+        }
+      });
+      image3.addEventListener("click", function (event) {
+        count++;
+        if (count == 1 && textCount >= 1) {
+          image3.classList.add("flip-box");
+          image3.style.transform = `rotateY(${count * 180}deg)`;
+          setTimeout(() => {
+            image3.src = `${animalName[2]}.jpg`;
+            let animal = event.target.src;
+            text = animal.substr(22);
+
+            if (check == text) {
+              result = ++resultCount;
+              console.log(result);
+
+              $(`#img3`).fadeOut(2000);
+              $(".fade").fadeOut(2000);
+              count = 0;
+              textCount = 0;
+              if (result == 4) {
+                clearInterval(Timing);
+                const resultTime = eval(`60 - ${timer}`);
+                $("#Feedback")
+                  .text("Congratulation You Completed in ")
+                  .append(`${resultTime} Seconds..🙌🕺`);
+              }
+            } else {
+              count = 0;
+              textCount = 0;
+
+              setTimeout(() => {
+                image3.style.transform = `rotateY(${360}deg)`;
+                $("#3").css({ transform: "rotateY(360deg)" });
+                $(".fade").css({ transform: `rotateY(${360}deg)` });
+
+                image3.src = "./photo-1530533718754-001d2668365a.avif";
+                $(".fade h3").text("");
+                $("#name4").removeClass("fade");
+                $("#name3").removeClass("fade");
+                $("#name2").removeClass("fade");
+                $("#name1").removeClass("fade");
+              }, 1800);
+            }
+          }, 800);
+        }
+
+        console.log(resultCount);
+      });
+      image4.addEventListener("click", function (event) {
+        count++;
+        console.log(count);
+        if (count == 1 && textCount >= 1) {
+          image4.classList.add("flip-box");
+          image4.style.transform = `rotateY(${count * 180}deg)`;
+          setTimeout(() => {
+            image4.src = `${animalName[3]}.jpg`;
+            let animal = event.target.src;
+            text = animal.substr(22);
+
+            console.log(text);
+            if (check == text) {
+              result = ++resultCount;
+              console.log(result);
+
+              $(`#img4`).fadeOut(2000);
+              $(".fade").fadeOut(2000);
+              count = 0;
+              textCount = 0;
+              if (result == 4) {
+                clearInterval(Timing);
+                const resultTime = eval(`60 - ${timer}`);
+                $("#Feedback")
+                  .text("Congratulation You Completed in ")
+                  .append(`${resultTime} Seconds..🙌🕺`);
+              }
+            } else {
+              count = 0;
+              textCount = 0;
+
+              setTimeout(() => {
+                image4.style.transform = `rotateY(${360}deg)`;
+                $("#4").css({ transform: "rotateY(360deg)" });
+                $(".fade").css({ transform: `rotateY(${360}deg)` });
+
+                image4.src = "./photo-1530533718754-001d2668365a.avif";
+                $(".fade h3").text(" ");
+                $("#name4").removeClass("fade");
+                $("#name3").removeClass("fade");
+                $("#name2").removeClass("fade");
+                $("#name1").removeClass("fade");
+              }, 1800);
+            }
+          }, 800);
+        }
+      });
+    </script>
+  </body>
+</html>
