@@ -48,7 +48,7 @@
       justify-content: space-around;
     }
 
-   .img{
+   img{
     height: 100px;
     width: 100px;
    }
@@ -77,43 +77,37 @@
 
       <br />
       <div class="container2">
-        <div class="img">
           <img
             src="./photo-1530533718754-001d2668365a.avif"
             alt=""
             id="img1"
-            height="100%"
-            width="100%"
+           
           />
-        </div>
 
-        <div class="img">
+       
           <img
             src="./photo-1530533718754-001d2668365a.avif"
             alt=""
             id="img2"
-            height="100%"
-            width="100%"
+           
           />
-        </div>
-        <div class="img">
+        
+       
           <img
             src="./photo-1530533718754-001d2668365a.avif"
             alt=""
             id="img3"
-            height="100%"
-            width="100%"
+           
           />
-        </div>
-        <div class="img">
+        
+        
           <img
             src="./photo-1530533718754-001d2668365a.avif"
             alt=""
             id="img4"
-            height="100%"
-            width="100%"
+          
           />
-        </div>
+        
       </div>
     </div>
 
@@ -136,6 +130,7 @@
       var resultCount = 0;
       var result = 0;
       let timer = 60;
+      
       let Timing = setInterval(() => {
         --timer;
         $("#timer").text(`00:${timer}`);
@@ -255,6 +250,8 @@
 
               $(`#img1`).fadeOut(2000);
               $(".fade").fadeOut(2000);
+             
+
               count = 0;
               textCount = 0;
               if (result == 4) {
